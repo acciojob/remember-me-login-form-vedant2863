@@ -1,1 +1,20 @@
 //your JS code here. If required.
+<h1>Login Form</h1>
+
+  <form id="loginForm">
+    <input type="text" id="username" placeholder="Username" /><br><br>
+    <input type="password" id="password" placeholder="Password" /><br><br>
+
+    <label>
+      <input type="checkbox" id="checkbox" />
+      Remember me.
+    </label><br><br>
+
+    <input type="submit" id="submit" value="Submit" />
+  </form>
+
+  <br>
+
+  <button id="existing" style="display:none;">
+    Login as existing user
+  </button>
