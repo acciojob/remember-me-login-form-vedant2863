@@ -1,20 +1,48 @@
-//your JS code here. If required.
-<h1>Login Form</h1>
+const form = document.getElementById("loginForm");
+const usernameInput = document.getElementById("username");
+const passwordInput = document.getElementById("password");
+const checkbox = document.getElementById("checkbox");
+const existingBtn = document.getElementById("existing");
 
-  <form id="loginForm">
-    <input type="text" id="username" placeholder="Username" /><br><br>
-    <input type="password" id="password" placeholder="Password" /><br><br>
+// 🔹 Check localStorage on load
+window.onload = function () {
+  const savedUsername = localStorage.getItem("username");
+  const savedPassword = localStorage.getItem("password");
 
-    <label>
-      <input type="checkbox" id="checkbox" />
-      Remember me.
-    </label><br><br>
+  if (savedUsername && savedPassword) {
+    existingBtn.style.display = "block";
+  }
+};
 
-    <input type="submit" id="submit" value="Submit" />
-  </form>
+// 🔹 Form submit
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
 
-  <br>
+  const username = usernameInput.value;
+  const password = passwordInput.value;
 
-  <button id="existing" style="display:none;">
-    Login as existing user
-  </button>
+  alert(`Logged in as ${username}`);
+
+  if (checkbox.checked) {
+    // Save credentials
+    localStorage.setItem("username", username);
+    localStorage.setItem("password", password);
+
+    existingBtn.style.display = "block";
+  } else {
+    // Remove credentials
+    localStorage.removeItem("username");
+    localStorage.removeItem("password");
+
+    existingBtn.style.display = "none";
+  }
+});
+
+// 🔹 Existing user login
+existingBtn.addEventListener("click", function () {
+  const savedUsername = localStorage.getItem("username");
+
+  if (savedUsername) {
+    alert(`Logged in as ${savedUsername}`);
+  }
+});
